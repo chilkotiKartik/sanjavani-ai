@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-09-19T19:24:24.826Z",
+  "totals": {
+    "cases": 65,
+    "emergencies": 36,
+    "nonEmergencies": 29
+  },
+  "emergencyDetection": {
+    "caught": 36,
+    "missed": 0,
+    "recall": 1,
+    "wrongCategory": 0
+  },
+  "falseAlarms": {
+    "count": 0,
+    "rate": 0
+  },
+  "urgency": {
+    "underTriaged": 0,
+    "overTriaged": 0,
+    "falseEscalations": 0
+  },
+  "byLanguage": [
+    {
+      "language": "en",
+      "cases": 34,
+      "failures": 0
+    },
+    {
+      "language": "hi",
+      "cases": 4,
+      "failures": 0
+    },
+    {
+      "language": "hinglish",
+      "cases": 15,
+      "failures": 0
+    },
+    {
+      "language": "bn",
+      "cases": 12,
+      "failures": 0
+    }
+  ],
+  "failures": [],
+  "ms": 54,
+  "thresholds": {
+    "minEmergencyRecall": 1,
+    "maxFalseAlarmRate": 0.05,
+    "maxUnderTriage": 0
+  },
+  "breaches": []
+}
