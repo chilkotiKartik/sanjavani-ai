@@ -1,7 +1,7 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
-import helmet from 'helmet';
+import helmet, * as helmetModule from 'helmet';
 import type { Container } from './container';
 import { errorHandler, notFoundHandler } from './lib/errors';
 import { loadAuth } from './middleware/auth';
@@ -24,13 +24,15 @@ export function createApp(c: Container) {
     sessionMax: c.config.RATE_LIMIT_SESSION_MAX,
   });
 
+  const helmetMiddleware = typeof helmet === 'function' ? helmet : (helmetModule as unknown as { default?: typeof helmet }).default ?? (helmetModule as unknown as typeof helmet);
+
   app.disable('x-powered-by');
   app.set('trust proxy', c.config.TRUST_PROXY);
 
   app.use(requestId);
   if (!c.config.isTest) app.use(accessLog(c.logger));
   app.use(
-    helmet({
+    helmetMiddleware({
       // JSON API only — a locked-down CSP is safe here.
       contentSecurityPolicy: { directives: { defaultSrc: ["'none'"], frameAncestors: ["'none'"] } },
       crossOriginResourcePolicy: { policy: 'same-site' },
