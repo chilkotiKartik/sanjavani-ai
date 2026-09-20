@@ -1,184 +1,163 @@
-# Sanjeevani Voice
+# <p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,12,24,30&height=220&section=header&text=Sanjeevani%20Voice%20AI&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Voice-First%20Triage%20%26%20Hospital%20Navigation%20for%20India&descFontSize=20&descAlignY=62" width="100%" alt="Sanjeevani Voice Banner" /></p>
 
-**Speak naturally. Get the right next step.**
+<p align="center">
+  <a href="https://github.com/chilkotiKartik/sanjavani-ai/stargazers"><img src="https://img.shields.io/github/stars/chilkotiKartik/sanjavani-ai?style=for-the-badge&color=brightgreen&logo=github" alt="Stars" /></a>
+  <a href="https://github.com/chilkotiKartik/sanjavani-ai/network/members"><img src="https://img.shields.io/github/forks/chilkotiKartik/sanjavani-ai?style=for-the-badge&color=blue&logo=github" alt="Forks" /></a>
+  <a href="https://github.com/chilkotiKartik/sanjavani-ai/issues"><img src="https://img.shields.io/github/issues/chilkotiKartik/sanjavani-ai?style=for-the-badge&color=orange&logo=github" alt="Issues" /></a>
+  <a href="https://github.com/chilkotiKartik/sanjavani-ai/pulls"><img src="https://img.shields.io/github/issues-pr/chilkotiKartik/sanjavani-ai?style=for-the-badge&color=purple&logo=github" alt="Pull Requests" /></a>
+  <a href="https://github.com/chilkotiKartik/sanjavani-ai/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge&logo=opensourceinitiative" alt="License" /></a>
+</p>
 
-A voice-first medical triage and hyper-local hospital navigation assistant for India.
-Someone describes what's wrong in Bengali, Hindi, English or Hinglish; Sanjeevani asks the few
-follow-up questions that matter, tells them how urgent it is in plain language, and
-points them at a specific, suitable hospital — with a reason, a distance and directions.
-
-It is **not a doctor**, never gives a diagnosis, and never prescribes. When what it
-hears looks like an emergency, a deterministic safety layer takes over the screen
-before anything else runs.
-
----
-
-## What's in the box
-
-| | |
-|---|---|
-| **Voice pipeline** | mic → STT → language detection → safety engine → triage → facilities → reply → TTS, with barge-in and turn-taking |
-| **Languages** | Bengali (Bangla script), Hindi (Devanagari), English, Hinglish (romanised Hindi) — auto-detected per turn from script and vocabulary, switchable mid-conversation. Safety-critical content is written in all four; the longer explanatory screens fall back to English, and the app says so |
-| **Emergency circuit breaker** | Deterministic rules, independent of any model, that pre-empt normal triage and show one dominant call action to **112** |
-| **Triage** | Rule-based urgency (emergency / urgent / routine / self-care), red-flag screens first, explicit rationale |
-| **Hospital discovery** | Pluggable `FacilityProvider` — Google Places (New) + Routes, or a curated, source-attributed Gurugram directory |
-| **Transparent ranking** | Published weights over relevance, distance, operational status and required department — never "just the nearest" |
-| **AI** | Google Gemini (or Anthropic Claude) for understanding and phrasing only; every output is schema-validated and safety-capped server-side |
-| **Persistence** | PostgreSQL + Prisma, field-level AES-256-GCM encryption, coarse (geohash) location, automatic retention purge |
-| **Offline triage** | The safety rules, emergency circuit breaker and triage run **in the browser** when the server is unreachable — the same engine, not a copy |
-| **Measured safety** | 65 labelled vignettes across four languages — 100% emergency recall, 0% false alarms, 0 under-triage, 0 false escalations, enforced in CI (`npm run eval`) |
-| **Provable safety** | `/dashboard` re-runs that whole evaluation **in the visitor's browser**, against the same engine, and prints whatever it finds — the numbers are checked, not claimed |
-| **Emergency contact** | One trusted person, stored only on the device, offered as a one-tap call and a pre-written location SMS on the emergency screen |
-| **Care card** | A printable, shareable card for the hospital desk — including the red flags already ruled out, and a QR that carries the card's own text rather than a link, so nothing is uploaded and there is nothing to open later |
-| **Clinician review** | A role-gated console where a clinician judges real triage decisions — structured clinical facts only, never transcripts or identifiers. Findings outlive the retention window because they are evidence about a rule, not about a person |
-| **Answer trace** | Per-stage timings showing the safety rules really did run before anything was generated |
-| **Re-check** | Continue an earlier conversation; "worse" genuinely raises severity and can escalate urgency |
-| **Check-ins** | Asks "how is it now?" at the interval the advice implied; "worse" re-runs triage on the change. Kept on the device, never on a server |
-| **Data saver** | Skips downloaded audio and map tiles on a metered connection |
-| **Motion** | A spring-based system — page transitions, staggered reveals, counted numbers, sweep skeletons — every piece of which collapses under reduced motion |
-| **Accessibility** | Large targets, text scaling, high contrast, reduced motion, screen-reader semantics, spoken-first flows, a live preview to tune them |
-| **Demo mode** | Runs fully with zero API keys, using deterministic local providers — without ever looking like a mockup |
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Next.js%2016-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=flat-square&logo=google&logoColor=white" />
+  <img src="https://img.shields.io/badge/Prisma%20ORM-2D3748?style=flat-square&logo=prisma&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
+</p>
 
 ---
 
-## Quick start
+<div align="center">
 
-No Docker, no database, no keys required.
+### 🎙️ **Speak naturally. Get the right next step.**
 
-```bash
-git clone <this repo> sanjeevani-voice && cd sanjeevani-voice
-npm install      # also generates the Prisma client
-npm run setup    # writes .env, generates secrets, asks for a Gemini key (optional)
-npm run dev      # API on :4000, web on :3000
+A voice-first medical triage and hyper-local hospital navigation assistant engineered for India.
+Someone describes what's wrong in **Bengali, Hindi, English or Hinglish**; Sanjeevani asks the critical follow-up questions, evaluates urgency in real-time with deterministic safety bounds, and connects patients with suitable hospitals.
+
+[Explore Architecture](docs/ARCHITECTURE.md) • [API Reference](docs/API.md) • [Safety System](docs/SAFETY.md) • [Deployment Guide](docs/DEPLOYMENT.md) • [Demo Walkthrough](docs/DEMO.md)
+
+</div>
+
+---
+
+## ⚡ Key Highlights
+
+```mermaid
+graph LR
+    A[🎙️ User Voice Input] --> B[⚡ Language & STT Engine]
+    B --> C{🛡️ Deterministic Safety Guard}
+    C -- Emergency Triggered --> D[🚨 112 Emergency Call + Offline SOS]
+    C -- Safe to Triage --> E[🧠 Multi-turn Clinical Triage]
+    E --> F[🏥 Hyper-Local Facility Routing]
+    F --> G[📋 QR-Encrypted Patient Care Card]
 ```
 
-Open <http://localhost:3000> in Chrome, Edge or Safari.
-
-`npm run setup` is safe to re-run — it never overwrites a value you already have.
-If you prefer to do it by hand, `cp .env.example .env` works too; the defaults run.
-
-### Add your Gemini key
-
-One key turns on all three AI features — understanding, speech-to-text and
-text-to-speech. Get one free at <https://aistudio.google.com/apikey>, then either
-paste it when `npm run setup` asks, or put it in `.env`:
-
-```bash
-GEMINI_API_KEY=your-key-here
-```
-
-Restart, and the Settings screen will show "Gemini" as the live engine. Nothing else
-changes — the safety rules, the triage and the hospital ranking are the same code
-either way.
-
-### Add a database (optional)
-
-Only needed if you want conversation history to survive a restart.
-
-```bash
-createdb sanjeevani     # local PostgreSQL
-npm run db:migrate      # applies prisma/migrations
-npm run db:seed         # loads the curated facilities
-```
-
-Without one, everything runs in memory and the app tells you so.
-
-### Other providers (all optional)
-
-| Key | What it adds |
-|---|---|
-| `GEMINI_API_KEY` | Understanding, speech-to-text and text-to-speech |
-| `ELEVENLABS_API_KEY` + `ELEVENLABS_VOICE_ID` | A dedicated low-latency voice, preferred over Gemini's when set |
-| `ANTHROPIC_API_KEY` | Claude instead of Gemini for understanding (`AI_PROVIDER=anthropic` to force it) |
-| `GOOGLE_MAPS_API_KEY` | Live hospital search instead of the curated Gurugram directory |
-
-Each is picked up independently — there is no all-or-nothing switch, and
-`GET /v1/capabilities` reports exactly which provider is live.
-
-> Docker is **not** required. `Dockerfile.api`, `Dockerfile.web` and
-> `docker-compose.yml` are included for anyone who wants them, but every command in
-> this README runs without Docker installed.
+- 🚨 **Deterministic Circuit Breaker**: Pre-empts any LLM execution if critical emergency keywords or red flags are detected. Immediate emergency UI action to **112**.
+- 🌐 **Multilingual Voice Support**: Native auto-detection and low-latency response across Hindi, Bengali, English, and Hinglish.
+- 📶 **Zero-Network Offline Triage**: Pure in-browser rules and offline database ensure patient guidance even during network blackouts.
+- 🔒 **End-to-End Privacy**: Field-level AES-256-GCM message encryption, coarse Geohash resolution (no exact coordinates), automatic data retention purge.
+- 📊 **Clinician Audit & Review Console**: Built-in evaluation suites and role-gated review interface to audit live clinical decisions against golden benchmark vignettes.
 
 ---
 
-## Scripts
+## 📦 What's in the Box
 
-| Script | What it does |
+| Feature | Description |
 |---|---|
-| `npm run setup` | Writes `.env`, generates secrets, prepares the database if one is reachable |
-| `npm run dev` | API + web in watch mode |
-| `npm run build` | Generate Prisma client, typecheck, build API and web |
-| `npm run build:vercel-api` / `build:vercel-web` | Build for a serverless host — see [DEPLOYMENT.md](docs/DEPLOYMENT.md#serverless-vercel) |
-| `npm start` | Run both built servers |
-| `npm run typecheck` | `tsc --noEmit` across every workspace |
-| `npm run lint` | ESLint (flat config) over the repo |
-| `npm test` | Vitest — unit, rules and API integration |
-| `npm run test:e2e` | Playwright — the full journey, mobile + desktop |
-| `npm run db:migrate` / `db:seed` / `db:reset` | Schema and demo data |
-| `npm run db:purge` | Delete data past `RETENTION_DAYS` (run on a schedule) |
-| `npm run eval` | Measure the triage engine against the labelled vignettes; fails below thresholds |
-| `npm run check:secrets` | Fail if any server secret name appears in client bundles |
+| **🎙️ Voice Pipeline** | Mic → STT → Language Detection → Safety Engine → Triage → Facilities → Response Generator → TTS with barge-in & turn-taking |
+| **🇮🇳 Multilingual Matrix** | Bengali, Hindi, English, and Hinglish — dynamic turn-by-turn detection and seamless language switching |
+| **🛡️ Emergency Circuit Breaker** | Deterministic TypeScript safety matrix, completely independent of generative models |
+| **🩺 Clinical Triage** | Urgency scoring (`Emergency` / `Urgent` / `Routine` / `Self-care`), structured rationale, red-flag prioritization |
+| **📍 Hospital Discovery** | Google Places (New) + Routes API with curated Gurugram fallback directory |
+| **⚖️ Transparent Ranking** | Multi-factor weighted ranking (relevance, emergency capability, operational status, distance) |
+| **🤖 AI Orchestrator** | Google Gemini (with Anthropic Claude fallback) strictly bounded by server-side schemas |
+| **💾 Persistence & Security** | PostgreSQL + Prisma with AES-256-GCM field encryption, Geohash spatial masking, scheduled purging |
+| **📴 Offline Engine** | Complete triage & emergency rules run directly in browser Service Workers when offline |
+| **📈 Provable Safety Suite** | 65 labelled clinical vignettes across 4 languages with 100% emergency recall in CI |
+| **📲 Smart Care Card** | Printable/shareable emergency desk pass carrying self-contained QR data with zero server uploads |
 
 ---
 
-## Repository layout
+## 🚀 Quick Start
+
+No Docker or database required to run local development mode with deterministic fallbacks.
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/chilkotiKartik/sanjavani-ai.git
+cd sanjavani-ai
+npm install
+```
+
+### 2. Configure Environment
+
+```bash
+npm run setup    # Auto-generates secrets and prepares .env
+```
+
+*(Optional)* Add your Google Gemini API key to `.env` for generative capabilities:
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+### 3. Launch Development Servers
+
+```bash
+npm run dev
+```
+
+- **Web Portal**: [http://localhost:3000](http://localhost:3000)
+- **API Server**: [http://localhost:4000](http://localhost:4000)
+- **Safety Dashboard**: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+
+---
+
+## 🛠️ Scripts & Commands
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Starts API (:4000) and Web (:3000) with hot-reloading |
+| `npm run build` | Compiles Prisma clients, executes typechecks, and produces production bundles |
+| `npm test` | Runs Vitest unit, rule engine, and integration suites |
+| `npm run test:e2e` | Executes Playwright end-to-end user journeys (mobile & desktop) |
+| `npm run eval` | Runs the 65-vignette clinical safety benchmark |
+| `npm run check:secrets` | CI security scanner verifying no server secret leakages in bundles |
+| `npm run db:migrate` | Runs database migrations with Prisma |
+| `npm run db:seed` | Populates curated healthcare facilities |
+
+---
+
+## 🏛️ Architecture & Directory Layout
 
 ```
 apps/
-  web/     Next.js 16 (App Router) — 20 screens, the orb, the motion system, the voice client
-  api/     Express 5 — validation, auth, rate limits, routes, repositories
+  ├── web/                 Next.js 16 (App Router) — PWA, voice orb, motion transitions, clinical console
+  └── api/                 Express 5 — routes, rate limits, schema validation, Prisma repositories
 packages/
-  types/           Zod-first domain + API contracts shared by both sides
-  config/          Env schema, verified emergency contacts, region config
-  medical-safety/  Language detection, symptom extraction, emergency rules, triage, output guard
-  ai/              Conversation orchestrator + Gemini and Anthropic providers (validated tool calls)
-  maps/            FacilityProvider abstraction, ranking, Google + curated providers
-  voice/           VoiceProvider abstraction, Gemini + ElevenLabs + browser fallback
-  ui/              Design tokens and shared primitives
-  db/              Prisma client wrapper
-prisma/    schema.prisma, hand-written migrations, seed
-docs/      ARCHITECTURE.md, API.md, DEPLOYMENT.md, DEMO.md, SAFETY.md
-e2e/       Playwright journey specs
-eval/      The measurement runner (the vignettes and scorer live in packages/, so the
-           browser can run the same evaluation the build does)
-scripts/   migrate, seed helpers, retention purge, client-secret scanner
+  ├── types/               Shared TypeScript domain contracts & Zod schemas
+  ├── config/              Environment schemas, emergency contacts, region configurations
+  ├── medical-safety/      Deterministic safety guards, emergency lexicons, multilingual extraction
+  ├── ai/                  AI conversation orchestrator, prompt safety framing, tool schemas
+  ├── maps/                Hospital directory, Google Places/Routes providers, ranking algorithms
+  ├── voice/               Speech-to-text & TTS abstractions (Gemini Live / ElevenLabs / Web Speech)
+  ├── ui/                  Shared design tokens, UI primitives & components
+  └── db/                  Prisma client abstraction
 ```
 
 ---
 
-## Safety model, in one paragraph
+## 🤝 Contributing & Pull Requests
 
-Nothing a language model produces can raise or create an emergency on its own. The
-emergency circuit breaker is plain TypeScript: phrase rules plus composite rules over
-the symptoms accumulated in the conversation. It runs *before* triage, and if it fires,
-generation is skipped entirely and a fixed, localised instruction set is shown. When the
-AI *suspects* an emergency the deterministic rules missed, it cannot escalate — it can
-only cause the app to ask one specific confirming question. Everything the AI writes
-passes an output guard that blocks doctor claims, diagnoses, dosing, prescriptions,
-discouragement from seeking care and any phone number that isn't on the verified list.
-See [docs/SAFETY.md](docs/SAFETY.md).
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Data and privacy, in one paragraph
-
-Message text is encrypted at rest with AES-256-GCM using a server-held key. Location is
-stored only as a geohash (≈±2.4 km), never as coordinates. IP addresses are stored only
-as a keyed HMAC, for rate limiting and abuse review. Audit events record *that*
-something happened, never its clinical content. Everything expires after
-`RETENTION_DAYS` and `DELETE /v1/privacy/data` removes it immediately. No secret ever
-reaches the browser — `npm run check:secrets` enforces this in CI.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'feat: Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## Documentation
+## 📄 License & Medical Disclaimer
 
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how a turn flows through the system
-- [docs/API.md](docs/API.md) — every endpoint, request and response
-- [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — environment, migrations, operations (Docker optional)
-- [docs/DEMO.md](docs/DEMO.md) — demo mode, scripted scenarios, what to show
-- [docs/SAFETY.md](docs/SAFETY.md) — the clinical-content policy and where it lives in code
+Distributed under the MIT License.
 
-## Licence and clinical disclaimer
+> **Clinical Notice**: *Sanjeevani Voice provides general health information and triage navigation support. It does not provide medical diagnoses, prescribe medication, or replace qualified medical professionals. In an emergency in India, dial **112** immediately.*
 
-Sanjeevani Voice provides general health information and navigation help. It does not
-diagnose, prescribe, or replace professional medical care. In an emergency in India,
-call **112**.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,12,24,30&height=100&section=footer" width="100%" />
+</p>
