@@ -1,0 +1,31 @@
+name: 💡 Feature / Clinical Enhancement
+description: Suggest a new capability, language addition, or routing feature
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for suggesting a feature for Sanjeevani Voice.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Motivation
+      description: What challenge does this feature address?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the implementation idea, voice interaction flow, or clinical rationale.
+    validations:
+      required: true
+  - type: checkboxes
+    id: clinical_safety
+    attributes:
+      label: Clinical Safety Alignment
+      options:
+        - label: This feature adheres to the rule that LLM outputs never diagnose or prescribe.
+          required: true
+        - label: This feature maintains 100% emergency circuit breaker recall.
+          required: true

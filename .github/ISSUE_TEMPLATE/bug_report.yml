@@ -1,0 +1,41 @@
+name: 🐛 Bug Report
+description: File a bug report or safety anomaly in Sanjeevani Voice
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report an issue and keep Sanjeevani reliable.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment & Browser
+      description: What browser/device was used (e.g. Chrome 124 Mobile, Safari Desktop, iOS PWA)?
+      placeholder: Chrome on Android
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this behavior?
+      placeholder: |
+        1. Open Voice home screen
+        2. Speak '...'
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
