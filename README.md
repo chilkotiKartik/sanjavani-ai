@@ -33,6 +33,39 @@ Someone describes what's wrong in **Bengali, Hindi, English or Hinglish**; Sanje
 
 ---
 
+## 📱 Functional Prototype Showcase
+
+<table align="center" width="100%">
+  <tr>
+    <td width="33%" align="center" valign="top">
+      <h4>🎙️ 1. Voice Interaction & Orb</h4>
+      <img src="docs/assets/voice_home.png" alt="Voice Home & Interactive Orb" width="100%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);" />
+      <p align="center"><sub><b>Natural Voice Dialogue</b><br/>Zero-latency turn-taking & barge-in speech recognition across Hindi, English, Bengali & Hinglish.</sub></p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h4>🚨 2. Deterministic Circuit Breaker</h4>
+      <img src="docs/assets/emergency_sos.png" alt="Emergency SOS Circuit Breaker" width="100%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);" />
+      <p align="center"><sub><b>Hard Emergency Safety Layer</b><br/>Pre-empts LLM calls upon detecting cardiac or respiratory red flags with one-touch 112 SOS & offline protocols.</sub></p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h4>⏱️ 3. Safety Trace & Timing</h4>
+      <img src="docs/assets/care_summary_trace.png" alt="Clinical Safety Trace" width="100%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);" />
+      <p align="center"><sub><b>Verifiable Decision Engine</b><br/>Per-stage sub-millisecond execution logs demonstrating deterministic rule checks before text synthesis.</sub></p>
+    </td>
+  </tr>
+</table>
+
+<details>
+<summary><b>📊 Click to view Live Browser Safety Verification & Evaluation Dashboard</b></summary>
+<br/>
+<div align="center">
+  <img src="docs/assets/dashboard_eval.png" alt="Provable Browser Safety Dashboard & 65-Vignette Matrix" width="90%" style="border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.08);" />
+  <p align="center"><i>Interactive browser-side evaluation runner validating 100% emergency recall across 65 multilingual clinical vignettes without server dependencies.</i></p>
+</div>
+</details>
+
+---
+
 ## ⚡ Key Highlights
 
 ```mermaid
